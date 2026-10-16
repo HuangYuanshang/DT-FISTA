@@ -1,0 +1,20 @@
+# Python caches and local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local plotting/tool caches
+data/.matplotlib/
+
+# Keep every Python source file except the two files below.
+/prepare_preprocessed_npz.py
+
+# Keep all figures under figures/ tracked.
+
+# Upload only data/inputs/; ignore every other file under data/.
+/data/*
+!/data/inputs/
+!/data/inputs/**
+
+# Temporary Wiener output
+/s_WF_*.dat

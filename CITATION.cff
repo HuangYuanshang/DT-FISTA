@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "DT-FISTA: Inpainting Pulsar Dynamic Spectra via Fourier Sparsity"
+type: software
+
+authors:
+  - family-names: "Huang"
+    given-names: "Yuanshang"
+    affiliation: "South-Western Institute for Astronomy Research (SWIFAR), Yunnan University"
+    email: "huangyuanshang42@gmail.com"
+    orcid: "https://orcid.org/0009-0006-4956-8803"
+  - family-names: "Shi"
+    given-names: "Xun"
+    affiliation: "South-Western Institute for Astronomy Research (SWIFAR), Yunnan University"
+    email: "xun@ynu.edu.cn"
+    orcid: "https://orcid.org/0000-0003-2076-4510"
+
+version: "0.1.0"
+license: "MIT"
+keywords:
+  - "Astronomy image processing"
+  - "Computational methods"
+  - "Interstellar scattering"
+  - "Interstellar scintillation"
+  - "Radio pulsars"
