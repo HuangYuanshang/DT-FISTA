@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "DT-FISTA: Inpainting Pulsar Dynamic Spectra via Fourier Sparsity"
 type: software
+repository-code: "https://github.com/HuangYuanshang/DT-FISTA"
 
 authors:
   - family-names: "Huang"
