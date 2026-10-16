@@ -65,8 +65,8 @@ large Fourier amplitude. Each iteration applies the following five operations:
 After each cycle, the threshold is multiplied by a decay factor less than
 unity.
 
-For the mathematical formulation, implementation details, validation results,
-and limitations, see Huang and Shi, “Seeing Through the RFI Mask: DT-FISTA
+For the mathematical formulation, implementation details, and validation results, 
+see Huang and Shi, “Seeing Through the RFI Mask: DT-FISTA
 Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity” (paper in prep.).
 
 ## Requirements
@@ -134,13 +134,13 @@ python patch_compare.py --threads 1
 
 The metrics shown in this figure are:
 
-- `$E_{\mathrm{sec}}$`: the base-10 logarithm of the RMSE between the inpainted
+- $E_{\mathrm{sec}}$: the base-10 logarithm of the RMSE between the inpainted
   and original secondary spectra, normalized by the original secondary
   spectrum's DC power.
-- `$\mathrm{nRMSE}_{\mathrm{dyn}}$`: the RMSE between the inpainted and original
+- $\mathrm{nRMSE}_{\mathrm{dyn}}$: the RMSE between the inpainted and original
   dynamic spectra within the artificial mask, normalized by the standard
   deviation of the original patch.
-- `$P_{\mathrm{noise}}$`: the background noise power of the secondary spectrum,
+- $P_{\mathrm{noise}}$: the background noise power of the secondary spectrum,
   expressed in dB relative to the original secondary spectrum's DC power.
 
 ```bash
