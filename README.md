@@ -71,7 +71,6 @@ Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity” (paper in prep.).
 
 ## Requirements
 
-- Python 3.10 or newer
 - NumPy
 - SciPy
 - Matplotlib
