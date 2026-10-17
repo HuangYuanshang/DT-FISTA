@@ -149,7 +149,7 @@ dense Wiener inpainting solved with conjugate-gradient (CG) iterations, and
 DT-FISTA. Lower values are better for the two RMSE metrics; the noise power is
 reported for reference.
 
-| Pulsar | Method | $\mathrm{nRMSE}_{\mathrm{dyn}}$ | $E_{\mathrm{sec}}$ | $P_{\mathrm{noise}}$ (dB) | Time (s) | Memory (GiB) |
+| Pulsar | Method | $\text{nRMSE}_{\text{dyn}}$ | $E_{\mathrm{sec}}$ | $P_{\text{noise}}$ (dB) | Time (s) | Memory (GiB) |
 |:--|:--|--:|--:|--:|--:|--:|
 | B1237+25 | Original | — | — | -84.77 | — | — |
 |  | Mean | 1.020 | -4.10 | -82.40 | — | — |
