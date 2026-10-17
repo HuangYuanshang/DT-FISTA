@@ -21,7 +21,7 @@ require substantial memory and computation for full-resolution spectra.
 
 DT-FISTA (decreasing-threshold fast iterative shrinkage-thresholding algorithm)
 is an inpainting method that exploits the approximate sparsity or
-compressibility in the Fourier domain. **DT-FISTA initially estimates masked 
+compressibility representation in the Fourier domain. **DT-FISTA initially estimates masked 
 intensities from the strongest Fourier components and progressively refines 
 them with weaker components as the soft threshold decreases. Nesterov momentum 
 extrapolation accelerates these updates.** Each iteration uses one forward and one inverse
@@ -154,7 +154,6 @@ reported for reference.
 |  | Mean | 1.020 | -4.10 | -82.40 | — | — |
 |  | Wiener | 0.297 | -4.62 | -85.49 | 16,568.4 | 60.4 |
 |  | **DT-FISTA** | **0.188** | **-4.83** | **-85.65** | **1.72** | **0.015** |
-|  |  |  |  |  |  |  |
 | B2021+51 | Original | — | — | -77.98 | — | — |
 |  | Mean | 1.249 | -3.64 | -75.94 | — | — |
 |  | Wiener | 0.363 | -4.04 | -78.66 | 14,148.0 | 60.4 |
