@@ -137,8 +137,8 @@ The metrics shown in this figure are:
   and original secondary spectra, normalized by the original secondary
   spectrum's DC power.
 - $\mathrm{nRMSE}_{\mathrm{dyn}}$: the RMSE between the inpainted and original
-  dynamic spectra within the artificial mask, normalized by the standard
-  deviation of the original patch.
+  dynamic spectra within the mask, normalized by the standard
+  deviation of the original dynamic spectrum.
 - $P_{\mathrm{noise}}$: the background noise power of the secondary spectrum,
   expressed in dB relative to the original secondary spectrum's DC power.
 
@@ -152,12 +152,12 @@ reported for reference.
 |:--|:--|--:|--:|--:|--:|--:|
 | B1237+25 | Original | — | — | -84.77 | — | — |
 |  | Mean | 1.020 | -4.10 | -82.40 | — | — |
-|  | Wiener (dense CG) | 0.297 | -4.62 | -85.49 | 16,568.4 | 60.4 |
+|  | Wiener | 0.297 | -4.62 | -85.49 | 16,568.4 | 60.4 |
 |  | **DT-FISTA** | **0.188** | **-4.83** | **-85.65** | **1.72** | **0.015** |
 |  |  |  |  |  |  |  |
 | B2021+51 | Original | — | — | -77.98 | — | — |
 |  | Mean | 1.249 | -3.64 | -75.94 | — | — |
-|  | Wiener (dense CG) | 0.363 | -4.04 | -78.66 | 14,148.0 | 60.4 |
+|  | Wiener | 0.363 | -4.04 | -78.66 | 14,148.0 | 60.4 |
 |  | **DT-FISTA** | **0.169** | **-4.73** | **-78.86** | **1.72** | **0.015** |
 
 Time (s) is the elapsed time required for an inpainting run. Memory (GiB) is the
