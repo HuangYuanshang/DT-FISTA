@@ -28,7 +28,7 @@ decreases. Nesterov momentum
 accelerates these updates. Each iteration uses one forward and one inverse
 two-dimensional FFT plus pointwise operations, requiring $\mathcal{O}(N\log N)$
 time and $\mathcal{O}(N)$ memory. In the accompanying study, tests on
-$300\times300$ FAST dynamic spectra produce lower reconstruction errors than the dense
+$300\times300$ pixel FAST dynamic spectra produce lower reconstruction errors than the dense
 Wiener baseline while reducing runtime and memory requirements by more than
 $10^3$.
 
