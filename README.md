@@ -149,7 +149,7 @@ dense Wiener inpainting solved with conjugate-gradient (CG) iterations, and
 DT-FISTA. Lower values are better for the two RMSE metrics; the noise power is
 reported for reference.
 
-| Pulsar | Method | $\text{nRMSE}_{\text{dyn}}$ | $E_{\text{sec}}$ | $P_{\text{noise}}$ (dB) | Time (s) | Memory (GiB) |
+| $\text{Pulsar}$ | $\text{Method}$ | $\text{nRMSE}_{\text{dyn}}$ | $\text{E}_{\text{sec}}$ | $\text{P}_{\text{noise}} \text{(dB)}$ | $\text{\text{Time (s)}$ | $\text{Memory (GiB)}$ |
 |:--|:--|--:|--:|--:|--:|--:|
 | B1237+25 | Original | — | — | -84.77 | — | — |
 |  | Mean | 1.020 | -4.10 | -82.40 | — | — |
@@ -163,8 +163,8 @@ reported for reference.
 
 Time (s) is the elapsed time required for an inpainting run. Memory (GiB) is the
 peak additional resident memory used during the run relative to its pre-run
-baseline. For these tests, **DT-FISTA requires about $\large\mathbf{10^{-4}}$ of the Wiener
-runtime and about $\large\mathbf{2\times10^{-4}}$ of the Wiener memory.** The tests were run on
+baseline. For these tests, **DT-FISTA requires about $\mathbf{10^{-4}}$ of the Wiener
+runtime and about $\mathbf{2\times10^{-4}}$ of the Wiener memory.** The tests were run on
 Intel Xeon Gold 6230 processors at 2.10 GHz, with 80 logical processors
 and one numerical thread per inpainting run.
 
