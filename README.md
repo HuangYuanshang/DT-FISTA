@@ -2,6 +2,8 @@
 
 ## Project overview
 
+### Background
+
 Pulsar radio waves are scattered by electron-density irregularities in the
 ionized interstellar medium. The resulting interference changes with time and
 observing frequency, producing interstellar scintillation. A dynamic spectrum
@@ -11,6 +13,8 @@ Power in the secondary spectrum is often concentrated along parabolic
 scintillation arcs whose curvature and substructure probe the locations,
 velocities, and anisotropy of scattering screens.
 
+### The challenge
+
 Radio-frequency interference (RFI) mitigation can leave gaps in a dynamic
 spectrum. Replacing those samples with zero or a mean value is equivalent to
 multiplying the underlying signal by a binary sampling mask. In the Fourier
@@ -19,16 +23,18 @@ power from bright features, and can hide faint arcs through spectral leakage.
 Dense Wiener inpainting can reduce this leakage, but its covariance matrices
 require substantial memory and computation for full-resolution spectra.
 
+### Proposed method
+
 DT-FISTA (decreasing-threshold fast iterative shrinkage-thresholding algorithm)
-is an inpainting method that exploits the approximate sparsity or
-compressibility representation in the Fourier domain. **DT-FISTA initially estimates masked 
-intensities from the strongest Fourier components and progressively refines 
-them with weaker components as the soft threshold decreases. Nesterov momentum 
+is an inpainting method that exploits an approximately sparse or compressible
+representation in the Fourier domain. **DT-FISTA initially estimates masked
+intensities from the strongest Fourier components and progressively refines
+them with weaker components as the soft threshold decreases. Nesterov momentum
 extrapolation accelerates these updates.** Each iteration uses one forward and one inverse
-2D fast Fourier transforms (FFT) plus pointwise operations, requiring $\mathcal{O}(N\log N)$
+2D fast Fourier transform (FFT) plus pointwise operations, requiring $\mathcal{O}(N\log N)$
 time and $\mathcal{O}(N)$ memory. In the accompanying study, tests on
-$300\times300$ pixel FAST dynamic spectra **produce lower reconstruction errors than the dense
-Wiener while reducing runtime and memory requirements by more than
+$300\times300$ pixel FAST dynamic spectra **produce lower reconstruction errors than dense
+Wiener inpainting while reducing runtime and memory requirements by more than
 $\mathbf{10^3}$**.
 
 ## Algorithm overview
@@ -82,8 +88,10 @@ python -m pip install -r requirements.txt
 
 ## Data layout
 
-Analysis scripts resolve paths relative to their own directory and read only the
-two NPZ input files:
+The two NPZ input files are preprocessed dynamic spectra from FAST observations
+of two pulsars: PSR B1237+25 (MJD 58865.9) and PSR B2021+51 (MJD 59839.5).
+These data were obtained from the FAST data archive. Analysis scripts resolve
+paths relative to their own directory and use these files as their input:
 
 ```text
 data/
@@ -144,7 +152,7 @@ The metrics shown in this figure are:
 
 **300×300 dynamic spectra inpainting tests.** These tests use 300×300 pixel data from
 the two reference pulsar dynamic spectra. The table compares mean filling,
-dense Wiener inpainting solved with conjugate-gradient (CG) iterations, and
+dense Wiener inpainting solved using a conjugate-gradient (CG) solver, and
 DT-FISTA. Lower values are better for the two RMSE metrics; the noise power is
 reported for reference.
 
