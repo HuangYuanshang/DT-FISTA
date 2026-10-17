@@ -24,11 +24,11 @@ is an FFT-based inpainting method that exploits the approximate sparsity or
 compressibility of scintillation structure in the two-dimensional Fourier
 domain. It estimates missing intensities from the strongest Fourier components
 first and progressively admits weaker components as the soft threshold
-decreases, while enforcing the retained samples exactly. Nesterov momentum
+decreases. Nesterov momentum
 accelerates these updates. Each iteration uses one forward and one inverse
 two-dimensional FFT plus pointwise operations, requiring $\mathcal{O}(N\log N)$
 time and $\mathcal{O}(N)$ memory. In the accompanying study, tests on
-$300\times300$ FAST patches produce lower reconstruction errors than the dense
+$300\times300$ FAST dynamic spectra produce lower reconstruction errors than the dense
 Wiener baseline while reducing runtime and memory requirements by more than
 $10^3$.
 
@@ -143,7 +143,7 @@ The metrics shown in this figure are:
 - $P_{\mathrm{noise}}$: the background noise power of the secondary spectrum,
   expressed in dB relative to the original secondary spectrum's DC power.
 
-**300×300 Patch inpainting tests.** These tests use 300×300 pixel patches from
+**300×300 dynamic spectra inpainting tests.** These tests use 300×300 pixel patches from
 the two reference pulsar dynamic spectra. The table compares mean filling,
 dense Wiener inpainting solved with conjugate-gradient (CG) iterations, and
 DT-FISTA. Lower values are better for the two RMSE metrics; the noise power is
