@@ -66,8 +66,8 @@ After each cycle, the threshold is multiplied by a decay factor less than
 unity.
 
 For the mathematical formulation, implementation details, and validation results, 
-see Huang and Shi, “Seeing Through the RFI Mask: DT-FISTA
-Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity” (paper in prep.).
+see Huang and Shi, “Seeing Through the RFI Mask: DT-FISTA Inpainting of Pulsar 
+Dynamic Spectra via Fourier Sparsity” (paper in prep.).
 
 ## Requirements
 
@@ -143,6 +143,31 @@ The metrics shown in this figure are:
 - $P_{\mathrm{noise}}$: the background noise power of the secondary spectrum,
   expressed in dB relative to the original secondary spectrum's DC power.
 
+**300×300 Patch inpainting tests.** These tests use 300×300 pixel patches from
+the two reference pulsar dynamic spectra. The table compares mean filling,
+dense Wiener inpainting solved with conjugate-gradient (CG) iterations, and
+DT-FISTA. Lower values are better for the two RMSE metrics; the noise power is
+reported for reference.
+
+| Pulsar | Method | $\mathrm{nRMSE}_{\mathrm{dyn}}$ | $E_{\mathrm{sec}}$ | $P_{\mathrm{noise}}$ (dB) | Time (s) | Memory (GiB) |
+|:--|:--|--:|--:|--:|--:|--:|
+| B1237+25 | Original | — | — | -84.77 | — | — |
+|  | Mean | 1.020 | -4.10 | -82.40 | — | — |
+|  | Wiener (dense CG) | 0.297 | -4.62 | -85.49 | 16,568.4 | 60.4 |
+|  | **DT-FISTA** | **0.188** | **-4.83** | **-85.65** | **1.72** | **0.015** |
+|  |  |  |  |  |  |  |
+| B2021+51 | Original | — | — | -77.98 | — | — |
+|  | Mean | 1.249 | -3.64 | -75.94 | — | — |
+|  | Wiener (dense CG) | 0.363 | -4.04 | -78.66 | 14,148.0 | 60.4 |
+|  | **DT-FISTA** | **0.169** | **-4.73** | **-78.86** | **1.72** | **0.015** |
+
+Time (s) is the elapsed time required for an inpainting run. Memory (GiB) is the
+peak additional resident memory used during the run relative to its pre-run
+baseline. For these tests, **DT-FISTA requires about $\mathbf{10^{-4}}$ of the Wiener
+runtime and about $\mathbf{2\times10^{-4}}$ of the Wiener memory.** The tests were run on
+Intel Xeon Gold 6230 processors at 2.10 GHz, with 80 logical processors
+and one numerical thread per inpainting run.
+
 ```bash
 python sec_diff.py
 ```
@@ -150,9 +175,9 @@ python sec_diff.py
 ![Secondary-spectrum residuals](figures/sec_diff.png)
 
 `sec_diff.py` uses the `data/<pulsar>/patch_data.npz` files created by
-`patch_compare.py`, so run the two commands above in that order. The dense
-Wiener calculation in `patch_compare.py` can require substantial memory and
-runtime.
+`patch_compare.py`. Run `python patch_compare.py` first, then run
+`python sec_diff.py`. The dense Wiener calculation in `patch_compare.py` can
+require substantial memory and runtime.
 
 ## Reference
 
