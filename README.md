@@ -15,8 +15,8 @@ velocities, and anisotropy of scattering screens.
 
 ### The challenge
 
-Radio-frequency interference (RFI) mitigation can leave gaps in a dynamic
-spectrum. Replacing those samples with zero or a mean value is equivalent to
+Removing samples contaminated by radio-frequency interference (RFI) can leave gaps in 
+a dynamic spectrum. Replacing those samples with zero or a mean value is equivalent to
 multiplying the underlying signal by a binary sampling mask. In the Fourier
 domain, this convolves the signal with the transform of the mask, redistributes
 power from bright features, and can hide faint arcs through spectral leakage.
