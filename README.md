@@ -163,8 +163,8 @@ reported for reference.
 
 Time (s) is the elapsed time required for an inpainting run. Memory (GiB) is the
 peak additional resident memory used during the run relative to its pre-run
-baseline. For these tests, **DT-FISTA requires about $\mathbf{10^{-4}}$ of the Wiener
-runtime and about $\mathbf{2\times10^{-4}}$ of the Wiener memory.** The tests were run on
+baseline. For these tests, **DT-FISTA requires about $\large\mathbf{10^{-4}}$ of the Wiener
+runtime and about $\large\mathbf{2\times10^{-4}}$ of the Wiener memory.** The tests were run on
 Intel Xeon Gold 6230 processors at 2.10 GHz, with 80 logical processors
 and one numerical thread per inpainting run.
 
