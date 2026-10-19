@@ -33,7 +33,7 @@ The inputs are a dynamic spectrum and a binary mask. The threshold starts at a l
 
 After each cycle, the threshold is multiplied by a decay factor less than unity.
 
-For more details about the method, see the paper by Huang and Shi, “Seeing Through the RFI Mask: DT-FISTA Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity” ([arXiv:2610.23140](https://arxiv.org/abs/2610.23140)).
+For more details about the method, see the paper by Huang and Shi, [“Seeing Through the RFI Mask: DT-FISTA Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity”](https://www.alphaxiv.org/abs/2610.23140).
 
 ## Requirements
 
