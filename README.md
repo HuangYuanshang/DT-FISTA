@@ -4,14 +4,8 @@
 
 ### Background
 
-Pulsar radio waves are scattered by electron-density irregularities in the
-ionized interstellar medium. The resulting interference changes with time and
-observing frequency, producing interstellar scintillation. A dynamic spectrum
-records the intensity as a function of time and frequency, and the squared
-modulus of its 2D Fourier transform is the secondary spectrum.
-Power in the secondary spectrum is often concentrated along parabolic
-scintillation arcs whose curvature and substructure probe the locations,
-velocities, and anisotropy of scattering screens.
+Pulsar radio waves are scattered by electron-density irregularities in the ionized interstellar medium. The resulting interference changes with time and observing frequency, producing interstellar scintillation. A dynamic spectrum records the intensity as a function of time and frequency, and the squared modulus of its 2D Fourier transform is the secondary spectrum.
+Power in the secondary spectrum is often concentrated along parabolic scintillation arcs whose curvature and substructure probe the locations, velocities, and anisotropy of scattering screens.
 
 ### The challenge
 
