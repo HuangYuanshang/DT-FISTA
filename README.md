@@ -9,39 +9,20 @@ Power in the secondary spectrum is often concentrated along parabolic scintillat
 
 ### The challenge
 
-Removing samples contaminated by radio-frequency interference (RFI) can leave gaps in
-a dynamic spectrum. Replacing those samples with zero or a mean value is equivalent to
-multiplying the underlying signal by a binary sampling mask. In the Fourier
-domain, this convolves the signal with the transform of the mask, redistributes
-power from bright features, and can hide faint arcs through spectral leakage.
-Dense Wiener inpainting can reduce this leakage, but its covariance matrices
-require substantial memory and computation for full-resolution spectra.
+Removing samples contaminated by radio-frequency interference (RFI) can leave gaps in a dynamic spectrum. Replacing those samples with zero or a mean value is equivalent to multiplying the underlying signal by a binary sampling mask. In the Fourier domain, this convolves the signal with the transform of the mask, redistributes power from bright features, and can hide faint arcs through spectral leakage. Dense Wiener inpainting can reduce this leakage, but its covariance matrices require substantial memory and computation for full-resolution spectra.
 
 ### Proposed method
 
-DT-FISTA (decreasing-threshold fast iterative shrinkage-thresholding algorithm)
-is an inpainting method that exploits an approximately sparse or compressible
-representation in the Fourier domain. **DT-FISTA initially estimates masked
-intensities from the strongest Fourier components and progressively refines
-them with weaker components as the soft threshold decreases. Nesterov momentum
-extrapolation accelerates these updates.** Each iteration uses one forward and one inverse
-2D fast Fourier transform (FFT) plus pointwise operations, requiring $\mathcal{O}(N\log N)$
-time and $\mathcal{O}(N)$ memory. In the accompanying study, tests on
-$300\times300$ pixel FAST dynamic spectra **produce lower reconstruction errors than dense
-Wiener inpainting while reducing runtime and memory requirements by more than
-$\mathbf{10^3}$**.
+DT-FISTA (decreasing-threshold fast iterative shrinkage-thresholding algorithm) is an inpainting method that exploits an approximately sparse or compressible representation in the Fourier domain. **DT-FISTA initially estimates masked intensities from the strongest Fourier components and progressively refines them with weaker components as the soft threshold decreases. Nesterov momentum extrapolation accelerates these updates.** Each iteration uses one forward and one inverse 2D fast Fourier transform (FFT) plus pointwise operations, requiring $\mathcal{O}(N\log N)$ time and $\mathcal{O}(N)$ memory. In the accompanying study, tests on $300\times300$ pixel FAST dynamic spectra **produce lower reconstruction errors than dense
+Wiener inpainting while reducing runtime and memory requirements by more than $\mathbf{10^3}$**.
 
 ## Algorithm overview
 
-The central concept is to inpaint masked values using dominant Fourier
-components first, and then progressively refine these estimates with weaker
-components as the shrinkage threshold decreases.
+The central concept is to inpaint masked values using dominant Fourier components first, and then progressively refine these estimates with weaker components as the shrinkage threshold decreases.
 
-The inputs are a dynamic spectrum and a binary mask. The threshold starts at a
-large Fourier amplitude. Each iteration applies the following five operations:
+The inputs are a dynamic spectrum and a binary mask. The threshold starts at a large Fourier amplitude. Each iteration applies the following five operations:
 
-1. **Fourier transformation.** The current dynamic spectrum estimate is
-   transformed into the two-dimensional Fourier domain.
+1. **Fourier transformation.** The current dynamic spectrum estimate is transformed into the two-dimensional Fourier domain.
 
 2. **Soft shrinkage.** Soft thresholding is applied to all non-DC coefficients.
    Magnitudes below the threshold are set to zero, while larger magnitudes are
