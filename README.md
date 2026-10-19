@@ -4,8 +4,7 @@
 
 ### Background
 
-Pulsar radio waves are scattered by electron-density irregularities in the ionized interstellar medium. The resulting interference changes with time and observing frequency, producing interstellar scintillation. A dynamic spectrum records the intensity as a function of time and frequency, and the squared modulus of its 2D Fourier transform is the secondary spectrum.
-Power in the secondary spectrum is often concentrated along parabolic scintillation arcs whose curvature and substructure probe the locations, velocities, and anisotropy of scattering screens.
+Pulsar radio waves are scattered by electron-density irregularities in the ionized interstellar medium. The resulting interference changes with time and observing frequency, producing interstellar scintillation. A dynamic spectrum records the intensity as a function of time and frequency, and the squared modulus of its 2D Fourier transform is the secondary spectrum. Power in the secondary spectrum is often concentrated along parabolic scintillation arcs whose curvature and substructure probe the locations, velocities, and anisotropy of scattering screens.
 
 ### The challenge
 
@@ -24,30 +23,17 @@ The inputs are a dynamic spectrum and a binary mask. The threshold starts at a l
 
 1. **Fourier transformation.** The current dynamic spectrum estimate is transformed into the two-dimensional Fourier domain.
 
-2. **Soft shrinkage.** Soft thresholding is applied to all non-DC coefficients.
-   Magnitudes below the threshold are set to zero, while larger magnitudes are
-   reduced by the threshold with phases preserved. The DC coefficient remains
-   unchanged.
+2. **Soft shrinkage.** Soft thresholding is applied to all non-DC coefficients. Magnitudes below the threshold are set to zero, while larger magnitudes are reduced by the threshold with phases preserved. The DC coefficient remains unchanged.
 
-3. **Inverse Fourier transformation.** The shrunken coefficients are
-   transformed back to the time-frequency domain, yielding a new estimate over
-   the full grid.
+3. **Inverse Fourier transformation.** The shrunken coefficients are transformed back to the time-frequency domain, yielding a new estimate over the full grid.
 
-4. **Data consistency.** Retained samples are restored to their exact input
-   values from the preprocessed dynamic spectrum, while masked samples keep the
-   new inverse transform estimates.
+4. **Data consistency.** Retained samples are restored to their exact input values from the preprocessed dynamic spectrum, while masked samples keep the new inverse transform estimates.
 
-5. **Momentum extrapolation.** The difference between the two latest estimates
-   is multiplied by a weight and added to the newest estimate to form the input
-   for the next iteration. The weight follows the standard FISTA recurrence,
-   with the first update having zero momentum.
+5. **Momentum extrapolation.** The difference between the two latest estimates is multiplied by a weight and added to the newest estimate to form the input for the next iteration. The weight follows the standard FISTA recurrence, with the first update having zero momentum.
 
-After each cycle, the threshold is multiplied by a decay factor less than
-unity.
+After each cycle, the threshold is multiplied by a decay factor less than unity.
 
-For more details about the method, see the paper by Huang and Shi, “Seeing
-Through the RFI Mask: DT-FISTA Inpainting of Pulsar Dynamic Spectra via Fourier
-Sparsity” ([arXiv:2610.23140](https://arxiv.org/abs/2610.23140)).
+For more details about the method, see the paper by Huang and Shi, “Seeing Through the RFI Mask: DT-FISTA Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity” ([arXiv:2610.23140](https://arxiv.org/abs/2610.23140)).
 
 ## Requirements
 
@@ -63,10 +49,7 @@ python -m pip install -r requirements.txt
 
 ## Data layout
 
-The two NPZ input files are preprocessed dynamic spectra from FAST observations
-of two pulsars: PSR B1237+25 (MJD 58865.9) and PSR B2021+51 (MJD 59839.5).
-These data were obtained from the FAST data archive. Analysis scripts resolve
-paths relative to their own directory and use these files as their input:
+The two NPZ input files are preprocessed dynamic spectra from FAST observations of two pulsars: PSR B1237+25 (MJD 58865.9) and PSR B2021+51 (MJD 59839.5). These data were obtained from the FAST data archive. Analysis scripts resolve paths relative to their own directory and use these files as their input:
 
 ```text
 data/
@@ -77,8 +60,7 @@ data/
 
 Each NPZ input contains:
 
-- `dyn`: dynamic spectrum with shape `(Nf, Nt)`; every sample where
-  `mask == 0` is stored as zero;
+- `dyn`: dynamic spectrum with shape `(Nf, Nt)`; every sample where `mask == 0` is stored as zero;
 - `mask`: `uint8` mask with 1 for retained samples and 0 for masked samples;
 - `time_min` and `freq_MHz`: complete coordinate axes;
 - `time_range_min` and `frequency_range_MHz`: two-element min/max arrays.
@@ -116,20 +98,11 @@ python patch_compare.py --threads 1
 
 The metrics shown in this figure are:
 
-- $E_{\mathrm{sec}}$: the base-10 logarithm of the RMSE between the inpainted
-  and original secondary spectra, normalized by the original secondary
-  spectrum's DC power.
-- $\mathrm{nRMSE}_{\mathrm{dyn}}$: the RMSE between the inpainted and original
-  dynamic spectra within the mask, normalized by the standard
-  deviation of the original dynamic spectrum.
-- $P_{\mathrm{noise}}$: the background noise power of the secondary spectrum,
-  expressed in dB relative to the original secondary spectrum's DC power.
+- $E_{\mathrm{sec}}$: the base-10 logarithm of the RMSE between the inpainted and original secondary spectra, normalized by the original secondary spectrum's DC power.
+- $\mathrm{nRMSE}_{\mathrm{dyn}}$: the RMSE between the inpainted and original dynamic spectra within the mask, normalized by the standard deviation of the original dynamic spectrum.
+- $P_{\mathrm{noise}}$: the background noise power of the secondary spectrum, expressed in dB relative to the original secondary spectrum's DC power.
 
-**300×300 dynamic spectra inpainting tests.** These tests use 300×300 pixel data from
-the two reference pulsar dynamic spectra. The table compares mean filling,
-dense Wiener inpainting solved using a conjugate-gradient (CG) solver, and
-DT-FISTA. Lower values are better for the two RMSE metrics; the noise power is
-reported for reference.
+**300×300 dynamic spectra inpainting tests.** These tests use 300×300 pixel data from the two reference pulsar dynamic spectra. The table compares mean filling, dense Wiener inpainting solved using a conjugate-gradient (CG) solver, and DT-FISTA. Lower values are better for the two RMSE metrics; the noise power is reported for reference.
 
 | $\text{Pulsar}$ | $\text{Method}$ | $\text{nRMSE}_{\text{dyn}}$ | $\text{E}_{\text{sec}}$ | ${\text{P}}_{\text{noise}} \text{(dB)}$ | $\text{Time (s)}$ | $\text{Memory (GiB)}$ |
 |:--|:--|--:|--:|--:|--:|--:|
@@ -142,12 +115,7 @@ reported for reference.
 |  | Wiener | 0.363 | -4.04 | -78.66 | 14,148.0 | 60.4 |
 |  | **DT-FISTA** | **0.169** | **-4.73** | **-78.86** | **1.72** | **0.015** |
 
-Time (s) is the elapsed time required for an inpainting run. Memory (GiB) is the
-peak additional resident memory used during the run relative to its pre-run
-baseline. For these tests, **DT-FISTA requires about $\mathbf{10^{-4}}$ of the Wiener
-runtime and about $\mathbf{2\times10^{-4}}$ of the Wiener memory**. The tests were run on
-Intel Xeon Gold 6230 processors at 2.10 GHz, with 80 logical processors
-and one numerical thread per inpainting run.
+Time (s) is the elapsed time required for an inpainting run. Memory (GiB) is the peak additional resident memory used during the run relative to its pre-run baseline. For these tests, **DT-FISTA requires about $\mathbf{10^{-4}}$ of the Wiener runtime and about $\mathbf{2\times10^{-4}}$ of the Wiener memory**. The tests were run on Intel Xeon Gold 6230 processors at 2.10 GHz, with 80 logical processors and one numerical thread per inpainting run.
 
 ```bash
 python sec_diff.py
@@ -155,10 +123,7 @@ python sec_diff.py
 
 ![Secondary-spectrum residuals](figures/sec_diff.png)
 
-`sec_diff.py` uses the `data/<pulsar>/patch_data.npz` files created by
-`patch_compare.py`. Run `python patch_compare.py` first, then run
-`python sec_diff.py`. The dense Wiener calculation in `patch_compare.py` can
-require substantial memory and runtime.
+`sec_diff.py` uses the `data/<pulsar>/patch_data.npz` files created by `patch_compare.py`. Run `python patch_compare.py` first, then run `python sec_diff.py`. The dense Wiener calculation in `patch_compare.py` can require substantial memory and runtime.
 
 ## Reference
 
