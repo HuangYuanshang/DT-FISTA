@@ -15,7 +15,7 @@ velocities, and anisotropy of scattering screens.
 
 ### The challenge
 
-Removing samples contaminated by radio-frequency interference (RFI) can leave gaps in 
+Removing samples contaminated by radio-frequency interference (RFI) can leave gaps in
 a dynamic spectrum. Replacing those samples with zero or a mean value is equivalent to
 multiplying the underlying signal by a binary sampling mask. In the Fourier
 domain, this convolves the signal with the transform of the mask, redistributes
@@ -70,9 +70,9 @@ large Fourier amplitude. Each iteration applies the following five operations:
 After each cycle, the threshold is multiplied by a decay factor less than
 unity.
 
-For the mathematical formulation, implementation details, and validation results, 
-see Huang and Shi, “Seeing Through the RFI Mask: DT-FISTA Inpainting of Pulsar 
-Dynamic Spectra via Fourier Sparsity” (paper in prep.).
+For more details about the method, see the paper by Huang and Shi, “Seeing
+Through the RFI Mask: DT-FISTA Inpainting of Pulsar Dynamic Spectra via Fourier
+Sparsity” ([arXiv:2610.23140](https://arxiv.org/abs/2610.23140)).
 
 ## Requirements
 
@@ -187,5 +187,14 @@ require substantial memory and runtime.
 
 ## Reference
 
-Huang, Y., and Shi, X. “Seeing Through the RFI Mask: DT-FISTA Inpainting of
-Pulsar Dynamic Spectra via Fourier Sparsity.” Paper in preparation.
+```bibtex
+@misc{huang2026seeingrfimaskdtfista,
+      title={Seeing Through the RFI Mask: DT-FISTA Inpainting of Pulsar Dynamic Spectra via Fourier Sparsity}, 
+      author={Yuanshang Huang and Xun Shi},
+      year={2026},
+      eprint={2610.23140},
+      archivePrefix={arXiv},
+      primaryClass={astro-ph.IM},
+      url={https://arxiv.org/abs/2610.23140}, 
+}
+```
